@@ -1,8 +1,9 @@
 #ifndef __READ_DIRECTORY__
 #define __READ_DIRECTORY__
-#include <vector>
+#include <forward_list>
 #include <dirent.h>
-#include "Node.h"
+#include <cstring>
+#include "FileNode.h"
 
 class ReadDirectory {
 private:
@@ -12,8 +13,9 @@ public:
 	static ReadDirectory * getInstance();
 	static void destroy();
 
-	std::vector<Node> ls(const std::string & pathname = ".");
 	std::string join(const std::string & path1, const std::string & path2);
+	std::forward_list<FileNode> ls(const std::string & pathname = ".");
+	std::forward_list<FileNode> lsRegularFilesRecursive(const std::string & pathname = ".");
 private:
 	static ReadDirectory * _instance;
 };
