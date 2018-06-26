@@ -9,6 +9,7 @@ public:
 	~Dict();
 private:
 	std::map<std::string, DictList> _dictMap;
+	std::map<int, std::string> _docMap;
 };
 
 #endif // __DICT__
