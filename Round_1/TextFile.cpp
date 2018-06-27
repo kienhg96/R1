@@ -95,7 +95,6 @@ void TextFile::checkValidTextFile() {
 	for (int i = 0; i < size; i++) {
 		val = buf[i];
 		if (!((val >= 9 && val <= 13) || (val >= 32 && val <= 126))) {
-			_valid = false;
 			return;
 		}
 	}
