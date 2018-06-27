@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EC57C3E6-C4AB-499A-B5E0-D6BC8824772D}</ProjectGuid>
     <RootNamespace>Round_1</RootNamespace>
+    <ProjectName>coccoc</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -45,7 +46,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DEBUG_PROGRAM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -68,6 +69,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dict.cpp" />
+    <ClCompile Include="DictList.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="FileNode.cpp" />
     <ClCompile Include="ReadDirectory.cpp" />
@@ -75,6 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileNode.h" />
+    <ClInclude Include="Dict.h" />
+    <ClInclude Include="DictList.h" />
     <ClInclude Include="ReadDirectory.h" />
     <ClInclude Include="TextFile.h" />
   </ItemGroup>
