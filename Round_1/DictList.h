@@ -1,6 +1,7 @@
 #ifndef __DICT_LIST__
 #define __DICT_LIST__
 #include <forward_list>
+#include <cstddef>
 
 class DictList {
 public:
