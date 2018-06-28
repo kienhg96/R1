@@ -1,12 +1,17 @@
+/*
+	Contains all file's id containing same word
+	(forward_list + size)
+*/
+
 #ifndef __DICT_LIST__
 #define __DICT_LIST__
 #include <forward_list>
 #include <cstddef>
 
-class DictList {
+class DocIdList {
 public:
-	DictList();
-	~DictList();
+	DocIdList();
+	~DocIdList();
 
 	size_t size();
 	std::forward_list<int> * list();
@@ -14,6 +19,7 @@ public:
 	int last();
 	void clear();
 
+	void saveToFile(FILE * file);
 private:
 	size_t _size;
 	std::forward_list<int> * _list;

@@ -27,10 +27,10 @@
     <ClCompile Include="TextFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DictList.cpp">
+    <ClCompile Include="Dict.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dict.cpp">
+    <ClCompile Include="DocIdList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,10 +44,10 @@
     <ClInclude Include="TextFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DictList.h">
+    <ClInclude Include="Dict.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dict.h">
+    <ClInclude Include="DocIdList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

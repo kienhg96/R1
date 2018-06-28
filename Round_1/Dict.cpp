@@ -9,18 +9,18 @@ void Dict::addDocument(TextFile & textFile) {
 	_docMap[id] = textFile.getFileNode();
 	std::string word;
 	while (textFile.readNextWord(word)) {
-		_dictMap[word].add(id);
+		_docIdListMap[word].add(id);
 	}
 }
 
 std::forward_list<FileNode *> Dict::query(const std::string q) {
 	std::vector<std::string> words = split(q, ' ');
 	size_t size = words.size();
-	DictList ** listDictList = new DictList*[size];
+	DocIdList ** listDictList = new DocIdList*[size];
 	int listIndex = 0;
 	for (auto it = words.begin(); it != words.end(); it++) {
-		auto itDict = _dictMap.find(*it);
-		if (itDict == _dictMap.end()) {
+		auto itDict = _docIdListMap.find(*it);
+		if (itDict == _docIdListMap.end()) {
 			delete []listDictList;
 			return std::forward_list<FileNode *>();
 		} else {
@@ -74,14 +74,14 @@ std::vector<std::string> Dict::split(const std::string & phrase, char delimiter)
 	return list;
 }
 
-void Dict::sortListDictListBySize(DictList ** listDictList, int left, int right) { // Quick sort
+void Dict::sortListDictListBySize(DocIdList ** listDictList, int left, int right) { // Quick sort
 	int i = left, j = right;
 	size_t pivot = listDictList[(left + right) / 2]->size();
 	do {
 		while (listDictList[i]->size() < pivot && i < right) i++;
 		while (listDictList[j]->size() > pivot && j > left) j--;
 		if (i <= j) {
-			DictList * tmp = listDictList[i];
+			DocIdList * tmp = listDictList[i];
 			listDictList[i] = listDictList[j];
 			listDictList[j] = tmp;
 			i++; j--;
@@ -109,5 +109,50 @@ std::forward_list<int> Dict::findDupplicateItems(std::forward_list<int> * list1,
 	}
 	result.reverse();
 	return result;
+}
+
+void Dict::saveToFile(const std::string path) {
+	FILE * file;
+	file = fopen(path.c_str(), "wb");
+	if (!file) {
+		std::cout << "Cannot open " << path << '\n';
+		return;
+	}
+	// Write DocId list map
+	writeDocIdListMap(file, _docIdListMap);
+	// Write Doc map
+	writeDocMap(file, _docMap);
+
+	fclose(file);
+}
+
+void Dict::writeDocIdListMap(FILE * file, std::map<std::string, DocIdList>& docIdListMap) {
+	/* Size of Dict map */
+	int size = docIdListMap.size();
+	fwrite(&size, sizeof(int), 1, file);
+	for (auto it = docIdListMap.begin(); it != docIdListMap.end(); it++) {
+		writeString(file, it->first);
+		it->second.saveToFile(file); // Write Doc'id list to file
+	}
+}
+
+void Dict::writeDocMap(FILE * file, std::map<int, FileNode*> & docMap) {
+	int size = docMap.size();
+	/* Doc map size */
+	fwrite(&size, sizeof(int), 1, file);
+	int key;
+	for (auto it = docMap.begin(); it != docMap.end(); it++) {
+		key = it->first;
+		fwrite(&key, sizeof(int), 1, file);
+		it->second->saveToFile(file);
+	}
+}
+
+void Dict::writeString(FILE * file, std::string str) {
+	int size = str.size();
+	/* String size */
+	fwrite(&size, sizeof(int), 1, file);
+	/* String content */
+	fwrite(str.c_str(), size * sizeof(char), 1, file);
 }
 

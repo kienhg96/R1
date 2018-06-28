@@ -13,6 +13,10 @@ public:
 	bool isRegularFile() const;
 	bool isDirectory() const;
 	std::string getPathname() const;
+
+	void saveToFile(FILE * file) const;
+private:
+	void writeString(FILE * file, const std::string & str) const;
 private:
 	std::string _pathname;
 	NodeType _type;

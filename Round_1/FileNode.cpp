@@ -23,3 +23,17 @@ bool FileNode::isDirectory() const {
 std::string FileNode::getPathname() const {
 	return _pathname;
 }
+
+void FileNode::saveToFile(FILE * file) const {
+	writeString(file, _pathname);
+	char type = static_cast<int>(_type);
+	fwrite(&type, sizeof(char), 1, file);
+}
+
+void FileNode::writeString(FILE * file, const std::string & str) const {
+	int size = str.size();
+	/* String size */
+	fwrite(&size, sizeof(int), 1, file);
+	/* String content */
+	fwrite(str.c_str(), size * sizeof(char), 1, file);
+}

@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 		std::cout << (*it)->getPathname() << '\n';
 	}
 	ReadDirectory::destroy();
-
+	// dict.saveToFile("mydict.dict");
 	timeEnd = std::chrono::steady_clock::now();
 	duration = std::chrono::duration_cast<std::chrono::duration<double>>(timeEnd - timeStart);
 	std::cout << "===========================\nQuery time: " << duration.count() << " ms\n";

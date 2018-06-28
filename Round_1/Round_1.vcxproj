@@ -70,7 +70,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dict.cpp" />
-    <ClCompile Include="DictList.cpp" />
+    <ClCompile Include="DocIdList.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="FileNode.cpp" />
     <ClCompile Include="ReadDirectory.cpp" />
@@ -79,7 +79,7 @@
   <ItemGroup>
     <ClInclude Include="FileNode.h" />
     <ClInclude Include="Dict.h" />
-    <ClInclude Include="DictList.h" />
+    <ClInclude Include="DocIdList.h" />
     <ClInclude Include="ReadDirectory.h" />
     <ClInclude Include="TextFile.h" />
   </ItemGroup>
