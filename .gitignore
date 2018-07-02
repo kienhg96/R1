@@ -331,3 +331,5 @@ ASALocalRun/
 # Linux build
 coccoc
 
+# test output file
+index.dat

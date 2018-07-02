@@ -15,8 +15,10 @@ public:
 	std::string getPathname() const;
 
 	void saveToFile(FILE * file) const;
+	void readFromFile(FILE * file);
 private:
 	void writeString(FILE * file, const std::string & str) const;
+	void readString(FILE * file, std::string & str);
 private:
 	std::string _pathname;
 	NodeType _type;

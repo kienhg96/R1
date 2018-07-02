@@ -42,3 +42,13 @@ void DocIdList::saveToFile(FILE * file) {
 		fwrite(&val, sizeof(int), 1, file);
 	}
 }
+
+void DocIdList::readFromFile(FILE * file) {
+	fread(&_size, sizeof(size_t), 1, file);
+	int val;
+	for (size_t i = 0; i < _size; i++) {
+		fread(&val, sizeof(int), 1, file);
+		_list->push_front(val);
+	}
+	_list->reverse();
+}

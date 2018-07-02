@@ -15,7 +15,9 @@ ReadDirectory * ReadDirectory::getInstance() {
 }
 
 void ReadDirectory::destroy() {
-	delete _instance;
+	if (_instance) {
+		delete _instance;
+	}
 	_instance = nullptr;
 }
 

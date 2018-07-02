@@ -73,15 +73,19 @@
     <ClCompile Include="DocIdList.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="FileNode.cpp" />
+    <ClCompile Include="ParseParams.cpp" />
     <ClCompile Include="ReadDirectory.cpp" />
     <ClCompile Include="TextFile.cpp" />
+    <ClCompile Include="TimeMeter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileNode.h" />
     <ClInclude Include="Dict.h" />
     <ClInclude Include="DocIdList.h" />
+    <ClInclude Include="ParseParams.h" />
     <ClInclude Include="ReadDirectory.h" />
     <ClInclude Include="TextFile.h" />
+    <ClInclude Include="TimeMeter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

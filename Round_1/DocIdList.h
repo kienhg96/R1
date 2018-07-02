@@ -20,6 +20,7 @@ public:
 	void clear();
 
 	void saveToFile(FILE * file);
+	void readFromFile(FILE * file);
 private:
 	size_t _size;
 	std::forward_list<int> * _list;
