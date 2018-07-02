@@ -6,7 +6,7 @@
 #include "FileNode.h"
 
 #define BUFFER_SIZE 4096 // 4MiB
-#define MAX_WORD_SIZE 20
+#define MAX_WORD_SIZE 30
 #define HEAD_SIZE_CHECK_BINARY 128 // 128 bytes
 
 class TextFile {
