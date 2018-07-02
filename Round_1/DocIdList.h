@@ -5,6 +5,7 @@
 
 #ifndef __DICT_LIST__
 #define __DICT_LIST__
+#include <cstdio>
 #include <forward_list>
 #include <cstddef>
 

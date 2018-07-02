@@ -11,7 +11,7 @@
 #define READ_INPUT		0x00000100
 #define DEFAULT_PARAMS	0x00000000
 
-char * help =
+const char * help =
 "Usage:\n"
 "\tcoccoc \"many words\" [path to dictionary]\n\n"
 "Save index data and query:\n"
