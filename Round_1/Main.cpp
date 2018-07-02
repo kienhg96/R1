@@ -11,8 +11,18 @@
 #define READ_INPUT		0x00000100
 #define DEFAULT_PARAMS	0x00000000
 
+char * help =
+"Usage:\n"
+"\tcoccoc \"many words\" [path to dictionary]\n\n"
+"Save index data and query:\n"
+"\tcoccoc \"many words\" [path to dictionary] -s <path to save index data>\n\n"
+"Index only and save index data:\n"
+"\tcoccoc [path to dictionary] -i <path to save index data>\n\n"
+"Load index data and query:\n"
+"\tcoccoc \"many words\" -r <path to saved index data>\n";
+
 void showHelp() {
-	std::cout << "Usage:\n\t" << "coccoc \"many words\" [path to dictionary]\n";
+	std::cout << help;
 }
 
 int main(int argc, char *argv[]) {
@@ -77,13 +87,17 @@ int main(int argc, char *argv[]) {
 			dict.saveToFile(outputFile);
 		}
 		timeMeter.end();
-		std::cout << "Indexing Done.\n<Indexing time: " << timeMeter.getTime() << " ms>\n";
+		std::cout << "Indexing Done.\n<Indexing time: ~" << timeMeter.getTime() << " ms>\n";
 	} else if (mode & READ_INPUT) {
 		std::cout << "Reading index data from " << inputFile << " ... ";
 		timeMeter.start();
-		dict.readFromFile(inputFile);
-		timeMeter.end();
-		std::cout << "OK\n<Read time: " << timeMeter.getTime() << " ms>\n";
+		if (dict.readFromFile(inputFile)) {
+			timeMeter.end();
+			std::cout << "OK\n<Read time: ~" << timeMeter.getTime() << " ms>\n";
+		} else {
+			std::cout << "Failed.\nError: Cannot open " << inputFile << "\n";
+			return 0;
+		}
 	}
 
 	if (!(mode & INDEX_ONLY)) {
@@ -92,7 +106,7 @@ int main(int argc, char *argv[]) {
 		timeMeter.start();
 		auto queryResult = dict.query(queryStr);
 		timeMeter.end();
-		std::cout << "Query result for '" << queryStr << "':\n";
+		std::cout << "Query results for '" << queryStr << "':\n";
 		if (queryResult.begin() == queryResult.end()) {
 			std::cout << "[Empty]\n";
 		} else {
@@ -100,7 +114,7 @@ int main(int argc, char *argv[]) {
 				std::cout << (*it).getPathname() << '\n';
 			}
 		}
-		std::cout << "<Query time: " << timeMeter.getTime() << " ms>\n";
+		std::cout << "<Query time: ~" << timeMeter.getTime() << " ms>\n";
 	}
 	
 	ReadDirectory::destroy();

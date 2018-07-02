@@ -11,8 +11,8 @@ public:
 	void end();
 	double getTime();
 private:
-	std::chrono::time_point<std::chrono::steady_clock> _start;
-	std::chrono::time_point<std::chrono::steady_clock> _end;
+	std::chrono::steady_clock::time_point _start;
+	std::chrono::steady_clock::time_point _end;
 };
 
 
