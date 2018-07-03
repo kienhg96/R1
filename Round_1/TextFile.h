@@ -2,8 +2,8 @@
 #define __TEXT_FILE__
 #include <string>
 #include <iostream>
-#include <cstdio>
 #include "FileNode.h"
+#include "StringUtils.h"
 
 #define BUFFER_SIZE 4096 // 4MiB
 #define MAX_WORD_SIZE 30
@@ -22,7 +22,6 @@ public:
 	bool isValidTextFile();
 private:
 	bool readBuffer();
-	int isSpace(int character);
 	void checkValidTextFile();
 private:
 	char _buf[BUFFER_SIZE];

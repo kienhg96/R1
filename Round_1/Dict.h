@@ -5,6 +5,7 @@
 #include "DocIdList.h"
 #include "TextFile.h"
 #include "FileNode.h"
+#include "StringUtils.h"
 
 class Dict {
 public:
@@ -23,11 +24,9 @@ private:
 
 	void writeDocIdListMap(FILE * file, std::map<std::string, DocIdList> & docIdListMap);
 	void writeDocMap(FILE * file, std::map<int, FileNode> & docMap);
-	void writeString(FILE * file, const std::string & str);
 
 	void readDocIdListMap(FILE * file, std::map<std::string, DocIdList> & docIdListMap);
 	void readDocMap(FILE * file, std::map<int, FileNode> & docMap);
-	void readString(FILE * file, std::string & str);
 private:
 	// Mapping word to list of documentIDs
 	std::map<std::string, DocIdList> _docIdListMap;

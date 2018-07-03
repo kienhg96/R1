@@ -24,7 +24,7 @@ bool TextFile::readNextWord(std::string & result) {
 	}
 	// Build block
 	int localCurrent = 0;
-	while (!isSpace(_buf[_current]) && localCurrent < MAX_WORD_SIZE) {
+	while (!StringUtils::isSeperateChar(_buf[_current]) && localCurrent < MAX_WORD_SIZE) {
 		_tmp[localCurrent] = _buf[_current];
 		_current++;
 		localCurrent++;
@@ -34,7 +34,7 @@ bool TextFile::readNextWord(std::string & result) {
 	}
 
 	// Break out space
-	while (_current < _readSize && isSpace(_buf[_current])) {
+	while (_current < _readSize && StringUtils::isSeperateChar(_buf[_current])) {
 		_current++;
 	}
 
@@ -80,11 +80,6 @@ bool TextFile::readBuffer() {
 		return false;
 	}
 	return true;
-}
-
-int TextFile::isSpace(int character)
-{
-	return isspace(static_cast<unsigned char>(character));
 }
 
 void TextFile::checkValidTextFile() {

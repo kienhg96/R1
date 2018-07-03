@@ -147,7 +147,7 @@ void Dict::writeDocIdListMap(FILE * file, std::map<std::string, DocIdList>& docI
 	int size = docIdListMap.size();
 	fwrite(&size, sizeof(int), 1, file);
 	for (auto it = docIdListMap.begin(); it != docIdListMap.end(); it++) {
-		writeString(file, it->first);
+		StringUtils::writeString(file, it->first);
 		it->second.saveToFile(file); // Write Doc'id list to file
 	}
 }
@@ -164,23 +164,13 @@ void Dict::writeDocMap(FILE * file, std::map<int, FileNode> & docMap) {
 	}
 }
 
-void Dict::writeString(FILE * file, const std::string & str) {
-	int size = str.size();
-	/* String size */
-	fwrite(&size, sizeof(int), 1, file);
-	/* String content */
-	if (size > 0) {
-		fwrite(str.c_str(), size * sizeof(char), 1, file);
-	}
-}
-
 void Dict::readDocIdListMap(FILE * file, std::map<std::string, DocIdList> & docIdListMap) {
 	int size;
 	std::string key;
 	// Read size of doc id list map
 	fread(&size, sizeof(int), 1, file);
 	for (int i = 0; i < size; i++) {
-		readString(file, key); // Read key
+		StringUtils::readString(file, key); // Read key
 		docIdListMap[key].readFromFile(file);
 	}
 }
@@ -192,19 +182,5 @@ void Dict::readDocMap(FILE * file, std::map<int, FileNode> & docMap) {
 	for (int i = 0; i < size; i++) {
 		fread(&key, sizeof(int), 1, file);
 		docMap[key].readFromFile(file);
-	}
-}
-
-void Dict::readString(FILE * file, std::string & str) {
-	int size;
-	fread(&size, sizeof(int), 1, file);
-	if (size > 0) {
-		char * tmp = new char[size + 1];
-		fread(tmp, sizeof(char), size, file);
-		tmp[size] = 0;
-		str = tmp;
-		delete[] tmp;
-	} else {
-		str = "";
 	}
 }
