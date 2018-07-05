@@ -1,7 +1,7 @@
 #include "StringUtils.h"
 
 bool StringUtils::isSeperateChar(int c) {
-	char castC = static_cast<unsigned char>(c);
+	unsigned char castC = static_cast<unsigned char>(c);
 	return isspace(castC) != 0 || ispunct(castC) != 0;
 }
 
