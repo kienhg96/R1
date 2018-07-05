@@ -13,13 +13,17 @@
 
 const char * help =
 "Usage:\n"
-"\tcoccoc \"many words\" [path to dictionary]\n\n"
+"\tcoccoc \"many words\" [path to dictionary]\n"
+"\tExample: coccoc \"hello, world\" ~/\n\n"
 "Save index data and query:\n"
-"\tcoccoc \"many words\" [path to dictionary] -s <path to save index data>\n\n"
+"\tcoccoc \"many words\" [path to dictionary] -s <path to save index data>\n"
+"\tExample: coccoc \"hello, world\" ~/ -s ~/index.dat\n\n"
 "Index only and save index data:\n"
-"\tcoccoc [path to dictionary] -i <path to save index data>\n\n"
+"\tcoccoc [path to dictionary] -i <path to save index data>\n"
+"\tExample: coccoc ~/ -i ~/index.dat\n\n"
 "Load index data and query:\n"
-"\tcoccoc \"many words\" -r <path to saved index data>\n";
+"\tcoccoc \"many words\" -r <path to saved index data>\n"
+"\tExample: coccoc \"hello, world\" -r ~/index.dat\n";
 
 void showHelp() {
 	std::cout << help;
