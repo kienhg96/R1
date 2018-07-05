@@ -18,7 +18,7 @@ public:
 	bool saveToFile(const std::string & path);
 	bool readFromFile(const std::string & path);
 private:
-	std::vector<std::string> split(const std::string & phrase, char delimiter);
+	std::vector<std::string> split(const std::string & phrase);
 	void sortListDictListBySize(DocIdList ** listDictList, int left, int right);
 	std::forward_list<int> findDupplicateItems(std::forward_list<int> * list1, std::forward_list<int> * list2);
 

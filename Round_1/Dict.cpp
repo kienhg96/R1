@@ -14,7 +14,7 @@ void Dict::addDocument(TextFile & textFile) {
 }
 
 std::forward_list<FileNode> Dict::query(const std::string q) {
-	std::vector<std::string> words = split(q, ' ');
+	std::vector<std::string> words = split(q);
 	size_t size = words.size();
 	DocIdList ** listDictList = new DocIdList*[size];
 	int listIndex = 0;
@@ -45,21 +45,23 @@ std::forward_list<FileNode> Dict::query(const std::string q) {
 	return result;
 }
 
-std::vector<std::string> Dict::split(const std::string & phrase, char delimiter) {
+std::vector<std::string> Dict::split(const std::string & phrase) {
 	std::vector<std::string> list;
 	char buf[128]; // 128 characters
 	size_t phraseIndex = 0;
 	size_t bufIndex = 0;
 	size_t length = phrase.size();
 	while (phraseIndex < length) {
-		if (phrase[phraseIndex] == delimiter) {
+		if (StringUtils::isSeperateChar(phrase[phraseIndex])) {
 			phraseIndex++;
 			if (bufIndex != 0) {
 				buf[bufIndex] = 0;
 				bufIndex = 0;
 				list.push_back(buf);
 			}
-			
+			while (phraseIndex < length && StringUtils::isSeperateChar(phrase[phraseIndex])) {
+				phraseIndex++;
+			}
 		} else {
 			buf[bufIndex++] = phrase[phraseIndex++];;
 		}
