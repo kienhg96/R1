@@ -8,7 +8,7 @@ class StringUtils {
 public:
 	static bool isSeperateChar(int c);
 	static void writeString(FILE * file, const std::string & str);
-	static void StringUtils::readString(FILE * file, std::string & str);
+	static void readString(FILE * file, std::string & str);
 };
 
 #endif // __STRING_UTILS__
